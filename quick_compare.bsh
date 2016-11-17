@@ -1,0 +1,33 @@
+#! /bin/bash
+
+FILE=$1
+
+# a simple cache flusher. Provide one for your experiments, but
+# no need for a quick benchmark.
+function flush {
+  #./flushit $FILE > /dev/null;
+  echo "";
+}
+
+if [[ -z "$FILE" ]]
+then
+  echo "Please provide a dataset file name";
+  exit;
+fi
+
+if [ ! -e $FILE ]
+then
+  echo File $FILE does not exist;
+  exit 1;
+fi
+
+#standard string data structures, as typically implemented
+#in lecture notes and in computer science text books.
+
+echo "Make sure you run these experiments in single-user/console mode ... no gui, no other programs running, etc";
+
+flush;
+./nikolas_askitis_buffered_btrie output 1 $FILE 1 $FILE
+
+flush;
+./nikolas_askitis_buffered_btree output 1 $FILE 1 $FILE
